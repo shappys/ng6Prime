@@ -1,0 +1,15 @@
+<div class="layout-menu">
+  <a [routerLink]="[{outlets: { primary: ['maps']} }]" id="maps" #maps [class.first-menuitem]="firstMenuId==true" [class.active-menuitem]="maps.id == activeMenuId" (click)="activeMenuId = (activeMenuId === maps.id ? null : maps.id)">
+      <span>MAPS</span>
+  </a>
+  
+
+  <a [routerLink]="[{ outlets: { primary: ['temperature']} }]" id="temperature" #temperature [class.active-menuitem]="temperature.id == activeMenuId" (click)="activeMenuId = (activeMenuId === temperature.id ? null : temperature.id);firstMenuId=false">
+      <span>TEMPERATURE</span>
+  </a>
+  
+
+  <a [routerLink]="[{ outlets: { primary: ['shock']} }]" id="shock" #shock [class.active-menuitem]="shock.id == activeMenuId" (click)="activeMenuId = (activeMenuId === shock.id ? null : shock.id);firstMenuId=false">
+      <span>SHOCK</span>
+  </a>
+</div>

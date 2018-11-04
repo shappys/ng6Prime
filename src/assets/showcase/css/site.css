@@ -14,6 +14,7 @@ body {
     color: #333c40;
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
+    background-color: #f6f6f6;
 }
 
 #layout-topbar {
@@ -94,8 +95,7 @@ body {
 }
 
 .topbar-menu > li > a:hover {
-    border-bottom: #f74600 1px solid;
-    color: #f74600;
+   
     transition: all 0.5s ease-in-out;
 }
 
@@ -174,7 +174,7 @@ body {
     left: 0;
     top: 70px;
     height: calc(100% - 70px);
-    background-color: #ffffff;
+    
     overflow-x: hidden;
     overflow-y: auto;
     width: 300px;
@@ -195,7 +195,7 @@ body {
     border-bottom: 0px;
 }
 
-#layout-sidebar .layout-menu > a.active-menuitem {
+#layout-sidebar .layout-menu > a.active-menuitem,#layout-sidebar .layout-menu > a.first-menuitem {
     background-color: #ffffff !important;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -207,16 +207,16 @@ body {
     
 }
 
-#layout-sidebar .layout-menu > a.active-menuitem > span {
+#layout-sidebar .layout-menu > a.active-menuitem > span,#layout-sidebar .layout-menu > a.first-menuitem > span {
     color: #1b82d7;
     color: #f74600;
 }
 
-#layout-sidebar .layout-menu > a.active-menuitem img.layout-menu-icon-active {
+#layout-sidebar .layout-menu > a.active-menuitem img.layout-menu-icon-active,#layout-sidebar .layout-menu > a.first-menuitem img.layout-menu-icon-active {
     display: inline;
 }
 
-#layout-sidebar .layout-menu > a.active-menuitem img.layout-menu-icon-inactive {
+#layout-sidebar .layout-menu > a.active-menuitem img.layout-menu-icon-inactive,#layout-sidebar .layout-menu > a.first-menuitem img.layout-menu-icon-inactive {
     display: none;
 }
 
@@ -249,6 +249,62 @@ body {
     margin: -2px 0px 0px 30px;
     display: block;
 }
+/*layout-topbar*/
+#layout-topbar li > a.active-menuitem,#layout-topbar li > a.first-menuitem {
+   background: #f0f0f0 !important;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-bottom: #f74600 1px solid;
+    color: #f74600;
+    
+}
+
+#layout-topbar li > a.active-menuitem > span,#layout-topbar li > a.first-menuitem > span {
+    color: #1b82d7;
+    color: #f74600;
+}
+
+#layout-topbar li > a.active-menuitem img.layout-menu-icon-active,#layout-topbar li > a.first-menuitem img.layout-menu-icon-active {
+    display: inline;
+}
+
+#layout-topbar li > a.active-menuitem img.layout-menu-icon-inactive,#layout-topbar li > a.first-menuitem img.layout-menu-icon-inactive {
+    display: none;
+}
+
+#layout-topbar li > a:hover {
+    background-color: #eeeeee;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#layout-topbar li > a img {
+    width: 20px;
+    height: auto;
+    float: left;
+}
+
+#layout-topbar li > a img.layout-menu-icon-active {
+    display: none;
+}
+
+#layout-topbar li > a img.layout-menu-icon-inactive {
+    display: inline;
+}
+
+#layout-topbar li > a span {
+    color: #34393a;
+    font-size: 16px;
+    margin: -2px 0px 0px 30px;
+    display: block;
+}
+/*layout-topbar end*/
 
 #layout-sidebar .layout-menu > div {
     padding: 20px 15px;
@@ -365,7 +421,7 @@ body {
     display: block;
     padding: 30px;
     overflow: hidden;
-    background-color: #f5f7f8;
+    background-color: #f6f6f6;
 }
 
 .content-section.introduction {

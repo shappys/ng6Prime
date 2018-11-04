@@ -1,0 +1,13 @@
+<div class="layout-menu">
+  <a [routerLink]="[{ outlets: { primary: ['theme1']} }]" id="theme1" #theme1 [class.first-menuitem]="firstMenuId==true" [class.active-menuitem]="theme1.id == activeMenuId" (click)="activeMenuId = (activeMenuId === theme1.id ? null : theme1.id)">
+      
+      <span>THEME1</span>
+  </a>
+  
+
+  <a [routerLink]="[{ outlets: { primary: ['theme2']} }]" id="theme2" #theme2 [class.active-menuitem]="theme2.id == activeMenuId" (click)="activeMenuId = (activeMenuId === theme2.id ? null : theme2.id);firstMenuId=false">
+      
+      <span>THEME2</span>
+  </a>
+  
+</div>

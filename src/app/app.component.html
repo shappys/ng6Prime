@@ -4,56 +4,23 @@
           <i class="fa fa-bars"></i>
       </a>
 
-      <a href="#" class="logo" [routerLink]="['/']">
+      <a href="#" class="logo" [routerLink]="">
           <span>LOGO</span>
       </a>
 
       <ul class="topbar-menu">
           <li>
-              <a href="#" [routerLink]="['/setup']">GET STARTED</a>
+              <a [routerLink]="[{ outlets: {primary: ['maps'],sidebar: ['shipment'] } }]" id="shipment" #shipment [class.first-menuitem]="firstTopMenuId==true" [class.active-menuitem]="shipment.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === shipment.id ? null : shipment.id)">SHIPMENT</a>
           </li>
           <li class="topbar-menu-themes">
-              <a href="#">THEMES</a>
+              <a [routerLink]="[{ outlets: {primary: ['theme1'],sidebar: ['themes'] } }]" id="theme" #theme [class.active-menuitem]="theme.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === theme.id ? null : theme.id);firstTopMenuId=false">THEMES</a>
               
-          </li>
-          <li>
-              <a [routerLink]="['/support']">SUPPORT</a>
           </li>
       </ul>
   </div>
 
   <div id="layout-sidebar" [ngClass]="{'active': menuActive}">
-      <div class="layout-menu">
-          <a id="menu_input" #inputmenutitle [class.active-menuitem]="inputmenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === inputmenutitle.id ? null : inputmenutitle.id)">
-              
-              <span>Input</span>
-          </a>
-          
-
-          <a id="button_menutitle" #buttonmenutitle [class.active-menuitem]="buttonmenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === buttonmenutitle.id ? null : buttonmenutitle.id)">
-              
-              <span>Button</span>
-          </a>
-          
-
-          <a id="data_menutitle" #datamenutitle [class.active-menuitem]="datamenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === datamenutitle.id ? null : datamenutitle.id)">
-              
-              <span>Data</span>
-          </a>
-        
-
-          <a id="menu_panel" #panelmenutitle [class.active-menuitem]="panelmenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === panelmenutitle.id ? null : panelmenutitle.id)">
-              
-              <span>Panel</span>
-          </a>
-          
-
-          <a id="menu_overlay" #overlaymenutitle [class.active-menuitem]="overlaymenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === overlaymenutitle.id ? null : overlaymenutitle.id)">
-              
-              <span>Overlay</span>
-          </a>
-          
-      </div>
+    <router-outlet  name="sidebar"></router-outlet>
   </div>
 
   <div class="layout-mask" *ngIf="menuActive">
