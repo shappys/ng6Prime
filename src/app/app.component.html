@@ -1,34 +1,34 @@
 <div class="layout-wrapper">
   <div id="layout-topbar">
-      <a href="#" class="menu-button" (click)="onMenuButtonClick($event)">
+      <a *ngIf="show()" href="#" class="menu-button" (click)="onMenuButtonClick($event)">
           <i class="fa fa-bars"></i>
       </a>
 
-      <a href="#" class="logo" [routerLink]="">
+      <a href="#" class="logo" [routerLink]="['']">
           <span>LOGO</span>
       </a>
 
       <ul class="topbar-menu">
           <li>
-              <a [routerLink]="[{ outlets: {primary: ['maps'],sidebar: ['shipment'] } }]" id="shipment" #shipment [class.first-menuitem]="firstTopMenuId==true" [class.active-menuitem]="shipment.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === shipment.id ? null : shipment.id)">SHIPMENT</a>
+              <a [routerLink]="[{ outlets: {primary: ['shipment'],sidebar: ['maps'] } }]" id="shipment" #shipment [class.first-menuitem]="firstTopMenuId==true" [class.active-menuitem]="shipment.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === shipment.id ? null : shipment.id)">SHIPMENT</a>
           </li>
           <li class="topbar-menu-themes">
-              <a [routerLink]="[{ outlets: {primary: ['theme1'],sidebar: ['themes'] } }]" id="theme" #theme [class.active-menuitem]="theme.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === theme.id ? null : theme.id);firstTopMenuId=false">THEMES</a>
+              <a [routerLink]="[{ outlets: {primary: ['themes'],sidebar: ['theme1'] } }]" id="theme" #theme [class.active-menuitem]="theme.id == activeTopMenuId" (click)="activeTopMenuId = (activeTopMenuId === theme.id ? null : theme.id);firstTopMenuId=false">THEMES</a>
               
           </li>
       </ul>
   </div>
 
-  <div id="layout-sidebar" [ngClass]="{'active': menuActive}">
-    <router-outlet  name="sidebar"></router-outlet>
+  <div *ngIf="show()" id="layout-sidebar" [ngClass]="{'active': menuActive}">
+        <router-outlet></router-outlet>
   </div>
 
-  <div class="layout-mask" *ngIf="menuActive">
+  <div class="layout-mask" *ngIf="menuActive && show()">
   </div>
 
-  <div id="layout-content">
+  <div id="layout-content" [class.layout-content]="show()==false">
       <div>
-          <router-outlet></router-outlet>
+        <router-outlet  name="sidebar"></router-outlet>
       </div>
 
       <div class="content-section layout-footer clearfix">

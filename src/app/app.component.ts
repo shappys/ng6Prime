@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {trigger,state,style,transition,animate} from '@angular/animations';
 import { Router, NavigationEnd } from '@angular/router';
+import { TempservService } from './tempserv.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,18 +32,26 @@ import { Router, NavigationEnd } from '@angular/router';
       ])
   ],
 })
-export class AppComponent implements OnInit{
-
+export class AppComponent implements OnInit, OnDestroy{
     menuActive: boolean;
     activeMenuId: string;
     activeTopMenuId: string;
     firstTopMenuId:boolean=true;
     notification: boolean = false;
-
-    ngOnInit() {
-      setTimeout(()=>this.notification = true , 1000)
+    currentUrl: string;
+    constructor(private router: Router, private tempserv:TempservService) {
+      this.tempserv.setShow(true);
+      router.events.subscribe((_: NavigationEnd) => {
+        if(!!_.url){
+        this.currentUrl = _.url
+        console.log(this.currentUrl);
+        
+        }
+      });      
     }
-
+    ngOnInit() {
+      setTimeout(()=>this.notification = true , 1000);
+    }
     onMenuButtonClick(event: Event) {
         this.menuActive = !this.menuActive;
         event.preventDefault();
@@ -52,14 +61,11 @@ export class AppComponent implements OnInit{
       this.notification = false;
       event.preventDefault();
     }
-    currentUrl: string;
-  constructor(private router: Router) {
-    router.events.subscribe((_: NavigationEnd) => {
-      if(!!_.url){
-      this.currentUrl = _.url
-      console.log(this.currentUrl);
-      
-      }
-    });
-  }
+    show(){
+      return this.tempserv.getShow();
+    }
+    ngOnDestroy(){
+      this.tempserv.setShow(false);
+    }
+  
 }

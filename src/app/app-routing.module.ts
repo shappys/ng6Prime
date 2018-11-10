@@ -8,37 +8,41 @@ import { TempcompComponent } from './tempcomp/tempcomp.component';
 import { ShockcompComponent } from './shockcomp/shockcomp.component';
 import { The1compComponent } from './the1comp/the1comp.component';
 import { The2compComponent } from './the2comp/the2comp.component';
+import { ShiplistComponent } from './shiplist/shiplist.component';
+import { ShipmentdetailsComponent } from './shipmentdetails/shipmentdetails.component';
 const routes: Routes = [
-  { path: "maps", component: MapcompComponent },
-  { path: "temperature", component: TempcompComponent },
-  { path: "shock", component: ShockcompComponent },
+  { path: "maps", loadChildren: "./shipmentdetails/shipmentdetails.module#ShipmentdetailsModule", outlet: "sidebar" },
+  { path: "maps/:id", loadChildren: "./shipmentdetails/shipmentdetails.module#ShipmentdetailsModule", outlet: "sidebar" },
+  { path: "temperature", component: TempcompComponent, outlet: "sidebar" },
+  { path: "shock", component: ShockcompComponent, outlet: "sidebar" },
+  { path: "theme1", component: The1compComponent, outlet: "sidebar" },
+  { path: "theme2", component: The2compComponent, outlet: "sidebar" },
+  //{ path: "shipment", component: MapcompComponent, outlet: "sidebar" },
   {
     path: "shipment",
     component: Sidenav1Component,
-    outlet: "sidebar",
     children:[
-      {path: "", redirectTo:'/maps(sidebar:shipment)', pathMatch:'full'},
-      { path: "maps", redirectTo:'/maps(sidebar:shipment)', pathMatch:'full'},
-      {path: "temperature", redirectTo:'/temperature(sidebar:shipment)', pathMatch:'full'},
-      {path: "shock", redirectTo:'/shock(sidebar:shipment)', pathMatch:'full'}
+      //{path: "shipment", redirectTo:'/', pathMatch:'full'},
+      {path: "maps", redirectTo:'/shipment(sidebar:maps)', pathMatch:'full'},
+      {path: "maps/:id", redirectTo:'/shipment(sidebar:maps/:id)', pathMatch:'full'},
+      {path: "temperature", redirectTo:'/shipment(sidebar:temperature)', pathMatch:'full'},
+      {path: "shock", redirectTo:'/shipment(sidebar:shock)', pathMatch:'full'}
     ]
   },
   {
     path: "themes",
     component: Sidenav2Component,
-    outlet: "sidebar",
     children:[
-      {path: "theme1", redirectTo:'/theme1(sidebar:themes)', pathMatch:'full'},
-      {path: "theme2", redirectTo:'/theme2(sidebar:themes)', pathMatch:'full'},
+      {path: "theme1", redirectTo:'/themes(sidebar:theme1)', pathMatch:'full'},
+      {path: "theme2", redirectTo:'/themes(sidebar:theme2)', pathMatch:'full'},
     ]
   },
-  { path: "theme1", component: The1compComponent },
-  { path: "theme2", component: The2compComponent },
-  {
-    path:"",
-    redirectTo:'/maps(sidebar:shipment)',
+  /*{
+    path:"shipment(sidebar:shipment)",
+    redirectTo:'/',
     pathMatch: 'full'
-  },
+  },*/
+  { path: "", component: ShiplistComponent, outlet: "sidebar" },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TempservService } from '../tempserv.service';
 @Component({
   selector: 'app-mapcomp',
   templateUrl: './mapcomp.component.html',
@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapcompComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private tempserv: TempservService) { }
+  getShipment(){
+    console.log(this.tempserv.getShipment());
+    return this.tempserv.getShipment();
+    
+  }
   ngOnInit() {
   }
 
